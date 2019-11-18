@@ -1,0 +1,207 @@
+* { 
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    /* min-width: 800px; */
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
+    background: darkgray;
+}
+
+table {
+    font-size: 8px;
+    border-collapse: collapse;
+    margin: 10px auto;
+    padding: 0;
+    table-layout: fixed;
+}
+
+table tr {
+    background-color: #e6f2f5;
+    padding: .35em;
+    border-bottom: 2px solid #fff;
+}
+table th, table td {
+    padding: 3px 10px;
+    border-right: 2px solid #fff;
+}
+
+table th {
+    font-size: .85em;
+  }
+table thead tr{
+    background-color: #00CC99;
+    color:#fff;
+}
+table tbody th {
+    background: #78bbc7;
+    color: #fff;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.menubar {
+    background:rgb(220, 220, 220)
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn1 {
+    width: 300px;
+    height: 60px;
+    background: rgb(212, 255, 251);
+    border-radius: 5px;
+    color: rgb(61, 61, 61);
+    line-height: 60px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 3px 0 black;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    opacity: 0.5;
+}
+
+.btn2 {
+    padding: 5px 5px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+#logoutbtn {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+}
+
+#backbtn {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+}
+
+#headertitle {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 10px;
+    text-align: center;
+    color: whitesmoke;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.8));
+}
+
+
+form {
+    text-align: center;
+}
+
+
+.background {
+    position: absolute;
+    background:rgb(180, 180, 180);
+    z-index: -1;
+}
+
+.message {
+    font-size: 15px;
+}
+
+.pconly {
+    display: none;
+}
+
+/*　↓↓↓ モーダル ↓↓↓　*/
+.modal {
+    width: 90%;
+    margin: 0 auto;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 2;
+    top: 50px;
+    left: 0;
+    right: 0;
+    transition: 0.4s;
+    line-height: 2em;
+}
+
+.modal > .container {
+    border: solid 1px black;
+    border-radius: 20px;
+    background: rgb(177, 219, 209);
+    padding: 10px;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.mask {
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* ↑↑↑　モーダル　↑↑↑　*/
+
+
+
+/*　↓↓↓ スマホ画面 ↓↓↓　*/
+
+@media (min-width: 600px) {
+
+    table {
+        font-size: 14px;
+    }
+
+     #headertitle {
+        font-size: 40px;
+    }
+
+    .btn2 {
+        padding: 10px 10px;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+    .message {
+        font-size: 20px;
+    }
+
+    #logoutbtn {
+        right: 20px;
+    }
+    
+    #backbtn {
+        left: 20px;
+    }
+
+    .pconly {
+        display: inline;
+    }
+    .modal {
+        width: 500px;
+    }
+    
+  }

@@ -1,0 +1,141 @@
+<?php
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../config/config.php');
+
+$app = new MyApp\Controller\MasterMente\MasterMente();
+
+$app->run();
+
+$_SESSION['title'] = '設定';
+
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8"> 
+        <title>設定</title>
+        <link rel="stylesheet" href="/styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/jscript">
+            $(function(){
+                $.ajax({
+                    url: '/setting/namestable.php',
+                    type: 'post',
+                    data: {
+                        "from": 'init',
+                        "kind": 'names'
+                    },
+                    success: function(msg){
+                        $("#namestable").html(msg);
+                    } ,
+                    error: function(err) {
+                        alert(err);
+                    }
+                });
+
+                $.ajax({
+                    url: '/setting/userstable.php',
+                    type: 'post',
+                    data: {
+                        "from": 'init',
+                        "kind": 'users'
+                    },
+                    success: function(msg){
+                        $("#userstable").html(msg);
+                    } ,
+                    error: function(err) {
+                        alert(err);
+                    }
+                });
+            });
+
+            function ConfirmDelNames(code) {
+                var result = window.confirm('削除しますか？');
+                if( result ) {
+                    $.ajax({
+                        url: '/setting/namestable.php',
+                        type: 'post',
+                        data: {
+                            "kind": 'names', 
+                            "from": 'del',
+                            "code": code
+                        },
+                        success: function(msg){
+                            $("#namestable").html(msg);
+                        } ,
+                        error: function(err) {
+                            alert(err);
+                        }
+                    });
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function ConfirmDelUsers(id) {
+                var result = window.confirm('削除しますか？');
+                if( result ) {
+                    $.ajax({
+                        url: '/setting/userstable.php',
+                        type: 'post',
+                        data: {
+                            "kind": 'users', 
+                            "from": 'del',
+                            "id": id
+                        },
+                        success: function(msg){
+                            $("#userstable").html(msg);
+                        } ,
+                        error: function(err) {
+                            alert(err);
+                        }
+                    });
+                }
+                else {
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body> 
+        <div class="container">
+            <?php include( $_SERVER['DOCUMENT_ROOT'] . '/header.php'); ?>
+            <canvas id="background" class="background"></canvas>
+            <section id="namesmaster">
+                <form action="" method="post">
+                    <input type="hidden" name="from" value="add">
+                    <input type="hidden" name="kind" value="names">
+                    <?php if ($_SESSION['me']->authority == 1) : ?> 
+                        コード<input type="text" name="code">
+                    <?php endif ?> 
+                    カテゴリ名<input type="text" name="name">
+                    <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+                    <input type="submit" value="追加">
+                </form>
+                <div class="container">
+                    <div id="namestable"></div>
+                </div>
+            </section>
+
+            <?php if ($_SESSION['me']->authority == 1) : ?> 
+                <section id="usersmaster">
+                    <form action="" method="post">
+                        <input type="hidden" name="from" value="add">
+                        <input type="hidden" name="kind" value="users">
+                        ユーザーID<input type="text" name="userid">
+                        パスワード<input type="text" name="password">
+                        権限<input type="text" name="authority">
+                        <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+                        <input type="submit" value="追加">
+                    </form>
+                    <div class="container">
+                        <div id="userstable"></div>
+                    </div>
+                </section>
+            <?php endif; ?>
+        </div>
+        <script src="/js/drawbackground.js"></script>
+    </body>
+</html>
