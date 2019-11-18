@@ -81,6 +81,10 @@ a {
     font-weight: bold;
 }
 
+.pconly {
+	display: none;
+}
+
 #logoutbtn {
     position: absolute;
     top: 20px;
@@ -123,9 +127,7 @@ form {
     font-size: 15px;
 }
 
-.pconly {
-    display: none;
-}
+
 
 /*　↓↓↓ モーダル ↓↓↓　*/
 .modal {
@@ -196,10 +198,11 @@ form {
     #backbtn {
         left: 20px;
     }
+    
+	.pconly {
+		display: table-cell;
+	}
 
-    .pconly {
-        display: inline;
-    }
     .modal {
         width: 500px;
     }
